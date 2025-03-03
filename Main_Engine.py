@@ -132,7 +132,7 @@ for index, row in livescores_df.iterrows():
 Column_Headers=['HOME', 'AWAY','H_GOALS', 'A_GOALS', 'GAME_TIME', 'MATCH_LINK']
 
 live_matches_df = pd.DataFrame({'HOME': Home_T, 'AWAY': Away_T, 'H_GOALS': Home_G, 'A_GOALS': Away_G, 'GAME_TIME': Time_A, 'MATCH_LINK': Match_URL})
-live_matches_df.to_csv('live_matches.csv', index=True)
+#live_matches_df.to_csv('live_matches.csv', index=True)
 
 #FULL DATA
 #print(live_matches_df)
@@ -145,7 +145,7 @@ finished_games=live_matches_df.query('GAME_TIME  > 90')
 Finished_Games=finished_games.drop(['MATCH_LINK', 'GAME_TIME'], axis=1)
 Finished_Games.reset_index(drop=True, inplace=True)
 
-Finished_Games
+print(Finished_Games)
 
 #APPENDING OUTPUT TO CSV OR DATABASE
 #Finished_Games.to_csv(‘Finished_matches.csv’, mode=’a’, index=False)
