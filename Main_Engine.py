@@ -144,8 +144,9 @@ live_matches_df = pd.DataFrame({'HOME': Home_T, 'AWAY': Away_T, 'H_GOALS': Home_
 finished_games=live_matches_df.query('GAME_TIME  > 90')
 Finished_Games=finished_games.drop(['MATCH_LINK', 'GAME_TIME'], axis=1)
 Finished_Games.reset_index(drop=True, inplace=True)
-
-print(Finished_Games)
+F_games=Finished_Games.to_dict('records')
+def finished_games():
+    return F_games
 
 #APPENDING OUTPUT TO CSV OR DATABASE
 #Finished_Games.to_csv(‘Finished_matches.csv’, mode=’a’, index=False)
