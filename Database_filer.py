@@ -5,11 +5,12 @@ f=finished_games()
 # Import MySQL Connector/Python 
 import mysql.connector as connector
 
+db_pass='Araf'
 
 # Connect to the database
 try:
     print("Establishing a new connection between MySQL and Python.")
-    connection=connector.connect(user="root",password='Araf')
+    connection=connector.connect(user="root",password=db_pass)
     print("A connection between MySQL and Python is successfully established")
 
 except connector.Error as er:
