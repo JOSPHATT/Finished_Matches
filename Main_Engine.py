@@ -145,6 +145,7 @@ finished_games=live_matches_df.query('GAME_TIME  > 90')
 Finished_Games=finished_games.drop(['MATCH_LINK', 'GAME_TIME'], axis=1)
 Finished_Games.reset_index(drop=True, inplace=True)
 F_games=Finished_Games.to_dict('records')
+print(F_games)
 def finished_games():
     return F_games
 
