@@ -1,3 +1,23 @@
 from Main_Engine import finished_games
 f=finished_games()
-print(f)
+#print(f)
+
+# Import MySQL Connector/Python 
+import mysql.connector as connector
+
+
+# Connect to the database
+try:
+    print("Establishing a new connection between MySQL and Python.")
+    connection=connector.connect(user="root",password='Araf')
+    print("A connection between MySQL and Python is successfully established")
+
+except connector.Error as er:
+    print("Error code:", er.errno)
+    print("Error message:", er.msg)
+connection=connector.connect(user="root",password=db_pass)
+
+
+# Create a cursor object to communicate with entire MySQL database
+cursor = connection.cursor()
+
