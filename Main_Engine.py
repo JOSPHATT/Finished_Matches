@@ -146,9 +146,9 @@ Finished_Games=finished_games.drop(['MATCH_LINK', 'GAME_TIME'], axis=1)
 Finished_Games.reset_index(drop=True, inplace=True)
 F_games=Finished_Games.to_dict('records')
 #print(F_games)
-def finished_games():
+def final_results():
     return F_games
-
+print(finished_games())
 #APPENDING OUTPUT TO CSV OR DATABASE
 #Finished_Games.to_csv(‘Finished_matches.csv’, mode=’a’, index=False)
 ###Main_Engine.py ends here....
