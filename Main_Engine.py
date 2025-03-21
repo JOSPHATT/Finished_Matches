@@ -73,10 +73,11 @@ Teams=extract_game_data(game_containers, 'teams')
 Time=extract_game_data(game_containers, 'times')
 # Close the webdriver
 driver.quit()
-#print(match_links)
-#print(Scores)
-#print(Teams)
-#print(Time)
+
+print(match_links)
+print(Scores)
+print(Teams)
+print(Time)
 
 
 
@@ -90,6 +91,7 @@ driver.quit()
 #separate home and away both for titles/names and scores
 #conmbine lists into dataframe for storage and further processing
 
+"""
 livescores_df = pd.DataFrame({'match': Teams, 'time': Time, 'Live_score': Scores, 'match_link': match_links})
 #print(livescores_df)
 
@@ -152,3 +154,4 @@ print(final_results())
 #APPENDING OUTPUT TO CSV OR DATABASE
 #Finished_Games.to_csv(‘Finished_matches.csv’, mode=’a’, index=False)
 ###Main_Engine.py ends here....
+"""
