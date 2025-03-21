@@ -1,12 +1,14 @@
 from Main_Engine import raw_results
 import pandas as pd
 import re
+
 Raw_results=raw_results()
 match_links=Raw_results[0] 
 Scores=Raw_results[1]
 Teams=Raw_results[2]
 Time=Raw_results[3]
-print(match_links, Scores, Teams, Time)
+
+#print(match_links, Scores, Teams, Time)
 
 livescores_df = pd.DataFrame({'match': Teams, 'time': Time, 'Live_score': Scores, 'match_link': match_links})
 #print(livescores_df)
@@ -50,8 +52,9 @@ for index, row in livescores_df.iterrows():
 Column_Headers=['HOME', 'AWAY','H_GOALS', 'A_GOALS', 'GAME_TIME', 'MATCH_LINK']
 
 live_matches_df = pd.DataFrame({'HOME': Home_T, 'AWAY': Away_T, 'H_GOALS': Home_G, 'A_GOALS': Away_G, 'GAME_TIME': Time_A, 'MATCH_LINK': Match_URL})
-#live_matches_df.to_csv('live_matches.csv', index=True)
 
+#APPENDING OUTPUT TO CSV FILE
+#live_matches_df.to_csv('finished_matches.csv', mode='a', index=True, header=False)
 #FULL DATA
 #print(live_matches_df)
 
@@ -62,12 +65,19 @@ live_matches_df = pd.DataFrame({'HOME': Home_T, 'AWAY': Away_T, 'H_GOALS': Home_
 finished_games=live_matches_df.query('GAME_TIME  > 90')
 Finished_Games=finished_games.drop(['MATCH_LINK', 'GAME_TIME'], axis=1)
 Finished_Games.reset_index(drop=True, inplace=True)
-F_games=Finished_Games.to_dict('records')
+#F_games=Finished_Games.to_dict('records')
 #print(F_games)
-def final_results():
-    return F_games
-print(final_results())
+#def final_results():
+#    return F_games
+#print(final_results())
+
 #APPENDING OUTPUT TO CSV OR DATABASE
-#Finished_Games.to_csv(‘Finished_matches.csv’, mode=’a’, index=False)
+try:
+  Finished_Games.to_csv(‘Finished_matches.csv’, mode=’a’, index=False, header=False)
+  print('NEW DATA APPENDED TO Finished_matches.csv FILE')
+except:
+  print('Error appending new data')
+  print('new data supposed to be appended to csv file is: ', Finished_Games) 
+  
 ###Main_Engine.py ends here....
 
