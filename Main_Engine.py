@@ -148,7 +148,7 @@ F_games=Finished_Games.to_dict('records')
 #print(F_games)
 def final_results():
     return F_games
-print(finished_games())
+print(final_results())
 #APPENDING OUTPUT TO CSV OR DATABASE
 #Finished_Games.to_csv(‘Finished_matches.csv’, mode=’a’, index=False)
 ###Main_Engine.py ends here....
