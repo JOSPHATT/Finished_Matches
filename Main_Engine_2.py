@@ -1,7 +1,10 @@
 from Main_Engine import raw_results
 
 Raw_results=raw_results()
-match_links, Scores, Teams, Time = Raw_results
+match_links=Raw_results[0] 
+Scores=Raw_results[1]
+Teams=Raw_results[2]
+Time=Raw_results[3]
 print(match_links, Scores, Teams, Time)
 
 """
