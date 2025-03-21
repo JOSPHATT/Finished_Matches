@@ -73,7 +73,7 @@ Finished_Games.reset_index(drop=True, inplace=True)
 
 #APPENDING OUTPUT TO CSV OR DATABASE
 try:
-  Finished_Games.to_csv(‘Finished_matches.csv’, mode=’a’, index=False, header=False)
+  Finished_Games.to_csv('Finished_matches.csv', mode='a', index=False, header=False)
   print('NEW DATA APPENDED TO Finished_matches.csv FILE')
 except:
   print('Error appending new data')
