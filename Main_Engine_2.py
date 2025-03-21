@@ -7,7 +7,6 @@ Teams=Raw_results[2]
 Time=Raw_results[3]
 print(match_links, Scores, Teams, Time)
 
-"""
 livescores_df = pd.DataFrame({'match': Teams, 'time': Time, 'Live_score': Scores, 'match_link': match_links})
 #print(livescores_df)
 
@@ -70,5 +69,4 @@ print(final_results())
 #APPENDING OUTPUT TO CSV OR DATABASE
 #Finished_Games.to_csv(‘Finished_matches.csv’, mode=’a’, index=False)
 ###Main_Engine.py ends here....
-"""
 
