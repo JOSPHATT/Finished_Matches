@@ -74,6 +74,7 @@ Time=extract_game_data(game_containers, 'times')
 # Close the webdriver
 driver.quit()
 
+print(match_links, Scores, Teams, Time)
 def raw_results():
     return [match_links, Scores, Teams, Time]
 
