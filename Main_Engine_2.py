@@ -1,8 +1,10 @@
 from Main_Engine import raw_results
 
+Raw_results=raw_results()
+match_links, Scores, Teams, Time = Raw_results
+print(match_links, Scores, Teams, Time)
 
-
-
+"""
 livescores_df = pd.DataFrame({'match': Teams, 'time': Time, 'Live_score': Scores, 'match_link': match_links})
 #print(livescores_df)
 
@@ -65,5 +67,5 @@ print(final_results())
 #APPENDING OUTPUT TO CSV OR DATABASE
 #Finished_Games.to_csv(‘Finished_matches.csv’, mode=’a’, index=False)
 ###Main_Engine.py ends here....
-
+"""
 
