@@ -1,6 +1,7 @@
 from Main_Engine import raw_results
 import pandas as pd
 import re
+import time
 
 Raw_results=raw_results()
 match_links=Raw_results[0] 
@@ -26,7 +27,7 @@ def match_time():
 
 #CREATING NEWDATAFRAME WITH COLUMN NAMES: [Home_team, Away_team, Home_score, Away_score, time_a, match_link]
 #INITIALISING COLUMN DATA IN FORM OF LISTS WHICH ARE THEN CONVERTED TO DATAFRAME
-Home_T, Away_T, Home_G, Away_G, Time_A, Match_URL=[],[],[],[],[],[]
+Time_stamp, Home_T, Away_T, Home_G, Away_G, Time_A, Match_URL=[],[],[],[],[],[],[]
 
 for index, row in livescores_df.iterrows():
   match_string=row['match']
@@ -48,10 +49,11 @@ for index, row in livescores_df.iterrows():
   Away_G.append(Away_score)
   Time_A.append(time_a)
   Match_URL.append(match_link)
+  Time_stamp.append(time.strftime('%x'))
 
-Column_Headers=['HOME', 'AWAY','H_GOALS', 'A_GOALS', 'GAME_TIME', 'MATCH_LINK']
+Column_Headers=['TIME', 'HOME', 'AWAY','H_GOALS', 'A_GOALS', 'GAME_TIME', 'MATCH_LINK']
 
-live_matches_df = pd.DataFrame({'HOME': Home_T, 'AWAY': Away_T, 'H_GOALS': Home_G, 'A_GOALS': Away_G, 'GAME_TIME': Time_A, 'MATCH_LINK': Match_URL})
+live_matches_df = pd.DataFrame({'TIME': Time_stamp, 'HOME': Home_T, 'AWAY': Away_T, 'H_GOALS': Home_G, 'A_GOALS': Away_G, 'GAME_TIME': Time_A, 'MATCH_LINK': Match_URL})
 
 #APPENDING OUTPUT TO CSV FILE
 #live_matches_df.to_csv('finished_matches.csv', mode='a', index=True, header=False)
@@ -62,6 +64,7 @@ live_matches_df = pd.DataFrame({'HOME': Home_T, 'AWAY': Away_T, 'H_GOALS': Home_
 #ENTER CODE HERE
 
 # filterING dataframe
+
 finished_games=live_matches_df.query('GAME_TIME  > 90')
 Finished_Games=finished_games.drop(['MATCH_LINK', 'GAME_TIME'], axis=1)
 Finished_Games.reset_index(drop=True, inplace=True)
