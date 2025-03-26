@@ -2,3 +2,4 @@ selenium
 requests
 pandas
 mysql-connector-python
+sqlite3
