@@ -3,7 +3,6 @@ import pandas as pd
 import sqlite3
 
 # define connection and cursor
-Finished_Games=Finished_Games
 connection = sqlite3.connect('finished_matches.db')
 
 cursor = connection.cursor()
@@ -16,18 +15,12 @@ HOME TEXT, AWAY TEXT, HOME_G INTEGER, AWAY_G INTEGER)"""
 
 cursor.execute(command1)
 
-# generate some random activities
+# EXTRACT LAST TWO ROWS FOR TESTING
+Test_Finished_Games=tail(Finished_Games, n =2)
 
-activities = [(int(time.time()), datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), 
-                randint(25, 35), randint(0, 10)),
-              (int(time.time() + 1), datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), 
-                randint(25, 35), randint(0, 10)),
-              (int(time.time() + 2), datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), 
-                randint(25, 35), randint(0, 10))]
+# add 3 GAMes to finished_games table
 
-# add 3 activities to activities table
-
-cursor.executemany('INSERT INTO activities VALUES (null, ?, ?, ?, ?)', activities)
+cursor.executemany('INSERT INTO finished_games VALUES (?, ?, ?, ?, ?, ?)', Test_Finished_Games)
 
 # commit changes
 
@@ -35,7 +28,7 @@ connection.commit()
 
 # get activities
 
-cursor.execute("SELECT * FROM activities")
+cursor.execute("SELECT * FROM finished_games")
 
 # display data
 
