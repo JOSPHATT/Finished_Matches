@@ -1,6 +1,6 @@
 import pandas as pd
  
-input = "Finished_Matches.csv"
+input = "Finished_matches.csv"
 output = "Unique_finished_matches.csv"
  
 ## read csv; index_col=False will remove the index to prevent a read of index col
