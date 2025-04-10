@@ -55,30 +55,41 @@ Column_Headers=['TIME', 'HOME', 'AWAY','H_GOALS', 'A_GOALS', 'GAME_TIME', 'MATCH
 
 live_matches_df = pd.DataFrame({'TIME': Time_stamp, 'HOME': Home_T, 'AWAY': Away_T, 'H_GOALS': Home_G, 'A_GOALS': Away_G, 'GAME_TIME': Time_A, 'MATCH_LINK': Match_URL})
 
-#APPENDING OUTPUT TO CSV FILE
-#live_matches_df.to_csv('finished_matches.csv', mode='a', index=True, header=False)
+#=============APPENDING OUTPUT TO CSV FILE============
+
 #FULL DATA
 #print(live_matches_df)
 
-#CAPTURE GAMES WITH LESS THAN 50 MINUTES PLAY TIME FOR SCRAPING AND PREDICTION
-#ENTER CODE HERE
 
+#HALFTIME GAMES
+#CAPTURE GAMES AT HALF TIME PLAY
+
+live_matches_df_copy=live_matches_df
+Half_time_games=live_matches_df_copy.query('GAME_TIME >= 45 & GAME_TIME <=46')
+Half_Time_Games=Half_time_games.drop(['MATCH_LINK', 'GAME_TIME'], axis=1)
+Half_Time_Games.reset_index(drop=True, inplace=True)
+Half_Time_Games=Half_Time_Games.rename(columns={'H_GOALS': 'H_HGOALS', 'A_GOALS': 'A_HGOALS'})
+#Half_Time_Games
+#APPENDING OUTPUT TO CSV OR DATABASE
+try:
+  Half_Time_Games.to_csv('half_time_matches.csv', mode='a', header=False)
+  print('NEW DATA APPENDED TO ---half_time_matches.csv-- FILE')
+except:
+  print('Error appending new data')
+  print('new data supposed to be appended to csv file is: ', Half_Time_Games) 
+  
+
+
+#FINISHED GAMES
 # filterING dataframe
 
 finished_games=live_matches_df.query('GAME_TIME  > 90')
 Finished_Games=finished_games.drop(['MATCH_LINK', 'GAME_TIME'], axis=1)
 Finished_Games.reset_index(drop=True, inplace=True)
-#F_games=Finished_Games.to_dict('records')
-#print(F_games)
-#def final_results():
-#    return F_games
-#print(final_results())
-
-#print('expected data to append', Finished_Games)
 #APPENDING OUTPUT TO CSV OR DATABASE
 try:
   Finished_Games.to_csv('Finished_matches.csv', mode='a', header=False)
-  print('NEW DATA APPENDED TO Finished_matches.csv FILE')
+  print('NEW DATA APPENDED TO ---Finished_matches.csv--- FILE')
 except:
   print('Error appending new data')
   print('new data supposed to be appended to csv file is: ', Finished_Games) 
